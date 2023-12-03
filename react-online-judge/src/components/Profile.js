@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import userData from "../data/userData";
+import { hover } from "@testing-library/user-event/dist/hover";
 const Profile = () => {
 	const { userId } = useParams();  // react-router-dom 에 정의된 후크
 	const user = userData[userId];
@@ -21,8 +22,9 @@ const Profile = () => {
 	}
 	return (
 		<div className="content-item">
-			<img style={{height:"300px", borderRadius:"50%", 
-			border:"2px solid #111", marginBottom:"10px"}} 
+			<img className="profileImg" style={{height:"300px", borderRadius:"50%", 
+			border:"2px solid #111", marginBottom:"10px"}			
+		} 
 			src={`/img/${userId}.png`} alt="profileImage"/>
 			<h1>{nickname}</h1>
 			<p>{userId}</p>

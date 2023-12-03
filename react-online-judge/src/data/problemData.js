@@ -8,7 +8,7 @@ const problemData = {
 		출력에는 M개의 정수를 출력한다.\n
 		`,
 		difficulty: 'Bronze',
-		input: "5\n1 3 4 2 5",
+		input: `5\n1 3 4 2 5`,
 		output: '5 4 3 2 1',
 		solved: false,
 	},

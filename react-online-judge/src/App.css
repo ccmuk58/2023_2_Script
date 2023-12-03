@@ -10,18 +10,20 @@
 	align-items: center;
 	height: 100vh;
 	margin: 0;
-	padding-top: 30px;
+	padding-top: 75px;
 	white-space: pre-line;
 }
+
 .content-item {
 	width: 65%;
 }
-.examples{
+
+.examples {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-
 }
+
 .example {
 	display: inline-block;
 	width: 40%;
@@ -30,11 +32,26 @@
 	border: 1px solid #ccc;
 	border-radius: 1em;
 }
-.example .IO{
+
+.example .IO {
 	text-align: left;
 	height: 128px;
 	border: 1px solid #ccc;
 	border-radius: 1em;
 	padding: 1em;
 	background-color: #e9ecef;
+}
+
+.navigationBar {
+	position: fixed;
+	width: 100%;
+	background-color: #e9ecef;
+	border-bottom: 1px solid #ccc;
+}
+
+.profileImg {
+	height: "300px";
+	border: "2px solid #111";
+	border-radius: 5%;
+	margin-bottom: "10px";
 }

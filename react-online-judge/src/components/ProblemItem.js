@@ -16,22 +16,17 @@ const ProblemItem = () => {
 			<p>{description}</p>
 			<hr />
 
-			<div className="example">
-				<Form.Label>입력</Form.Label>
-				<Form.Control
-					value={input}
-					disabled
-					className="IO"
-				/>
+			<div className="examples">
+				<div className="example">
+					<p>입력</p>
+					<p className="IO">{input}</p>
+				</div>
+				<div className="example">
+					<p>출력</p>
+					<p className="IO">{output}</p>
+				</div>
 			</div>
-			<div className="example">
-			<Form.Label>출력</Form.Label>
-				<Form.Control
-					value={output}
-					disabled
-					className="IO"
-				/>
-			</div>
+
 		</div>
 	);
 }
