@@ -1,6 +1,6 @@
 const userData = {
     'ccmuk58': {
-        userid: 'ccmuk58',
+        userId: 'ccmuk58',
 		nickname: '나쿠리',
         password: '1234',
         email: 'ccmuk58@naver.com',
@@ -15,7 +15,7 @@ const userData = {
 	},
 
 	'rihu':{
-		userid: 'rihu',
+		userId: 'rihu',
 		nickname: '핵가야',
         password: '5678',
         email: 'rihu@naver.com',
