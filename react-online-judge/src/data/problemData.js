@@ -3,7 +3,7 @@ const problemData = {
 		title: '제목 1',
 		description: 'This is the first problem.',
 		difficulty: 'Bronze',
-		input: '5\n1 2 3 4 5',
+		input: "5\n1 2 3 4 5",
 		output: '3 7',
 		solved: false,
 	},
