@@ -5,13 +5,9 @@ const userData = {
         password: '1234',
         email: 'ccmuk58@naver.com',
 		exp : 30,
-		solved : {
-			'1' : true,
-			'2' : false,
-			'3' : false,
-			'4' : true,
-			'5' : false,
-		},
+		solved : [
+			true, true, false, true, false
+		],
 	},
 
 	'rihu':{
@@ -20,13 +16,13 @@ const userData = {
         password: '5678',
         email: 'rihu@naver.com',
 		exp : 0,
-		solved : {
-			'1' : false,
-			'2' : true,
+		solved : [{
+			'1' : true,
+			'2' : false,
 			'3' : false,
 			'4' : true,
 			'5' : false,
-		},
+		}],
 	}
 };
 export default userData;

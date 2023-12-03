@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
-import Form from 'react-bootstrap/Form';
 import problemData from "../data/problemData";
+
 const ProblemItem = () => {
 	const { problemId } = useParams();  // react-router-dom 에 정의된 후크
 	const problem = problemData[problemId];
 
 	if (!problem) {
-		return <span>undefined</span>
+		return <span>문제를 찾을 수 없습니다.</span>
 	}
 	const { title, description, difficulty, input, output } = problem;
 	return (

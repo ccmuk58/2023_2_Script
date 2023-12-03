@@ -1,9 +1,11 @@
+import { Outlet } from "react-router-dom";
+
 const Ranking = () => {
 
 	return (
 		<>
-			<h1>Ranking Page</h1>
-			
+			<hr />
+			<Outlet />
 		</>
 	)
 }

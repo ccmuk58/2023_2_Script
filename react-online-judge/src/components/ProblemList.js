@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import problemData from "../data/problemData";
 import { Table } from "react-bootstrap";
+import problemData from "../data/problemData";
 const ProblemList = () => {
 	return (
 		<div className="content-item">

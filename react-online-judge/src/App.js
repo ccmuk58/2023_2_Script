@@ -11,6 +11,7 @@ import ProblemList from "./components/ProblemList";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ErrorPage from "./components/ErrorPage";
 import ProblemItem from "./components/ProblemItem";
+import RankingList from "./components/RankingList";
 
 const AppRouter = () => {
 	return (
@@ -21,13 +22,17 @@ const AppRouter = () => {
 					<Route path="/" element={<Title />} />
 					<Route path="/problem" element={<Problem />} >
 						<Route index element={<ProblemList />} />
-          				<Route path=':problemId' element={<ProblemItem/>}/>
+						<Route path=':problemId' element={<ProblemItem />} />
 					</Route>
-					<Route path="/ranking" element={<Ranking />} />
+					<Route path="/ranking" element={<Ranking />} >
+						<Route index element={<RankingList />} />
+						<Route path=':userId' element={<Profile />} />
+					</Route>
 					<Route path="/search" element={<Search />} />
+					{/*로그인된 아이디로 프로필 접근 처리*/}
 					<Route path="/profile" element={<Profile />} />
 					<Route path="/login" element={<Login />} />
-		  			<Route path='*' element={<ErrorPage />} />
+					<Route path='*' element={<ErrorPage />} />
 				</Routes>
 			</div>
 		</div>
