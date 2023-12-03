@@ -7,6 +7,7 @@ import Ranking from "./components/Ranking";
 import Search from "./components/Search";
 import Profile from "./components/Profile";
 import Login from "./components/Login";
+import Logout from "./components/Logout";
 import ProblemList from "./components/ProblemList";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ErrorPage from "./components/ErrorPage";
@@ -32,6 +33,7 @@ const AppRouter = () => {
 					{/*로그인된 아이디로 프로필 접근 처리*/}
 					<Route path="/profile" element={<Profile />} />
 					<Route path="/login" element={<Login />} />
+					<Route path="/logout" element={<Logout />} />
 					<Route path='*' element={<ErrorPage />} />
 				</Routes>
 			</div>

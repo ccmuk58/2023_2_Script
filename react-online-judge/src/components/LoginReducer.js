@@ -7,27 +7,31 @@ export const LoginReducer = createSlice({
     name: 'LoginState',
     initialState: {
         isLogin: false,
-        user: null,
-        type: null,
+        userID: null,
+        nickname: null,
     },
     reducers: {
         LoginState: (state, action) => {
-            const { user, type } = action.payload;
+            const { userID, nickname } = action.payload;
             state.isLogin = true;
-            state.user = user;
-            state.type = type;
+            state.userID = userID;
+            state.nickname = nickname
         },
-        LogoutState: (state, action) => {
-            const { user, type } = action.payload;
+        LogoutState: (state) => {
             state.isLogin = false;
-            state.user = null;
-            state.type = null;
+            state.userID = null;
+            state.nickname = null;
         },
     },
 })
 // 리듀서의 액션들을 비구조화로 가져오기
 export const {LoginState, LogoutState} = LoginReducer.actions;
+
 // 상태 값을 전달하는 함수 정의
-export const selectLogin = (state) => state.LoginState;
+export const selectLogin = (state) => ({
+    isLogin: state.LoginState.isLogin,
+    userID: state.LoginState.userID,
+    nickname: state.LoginState.nickname,
+});
 
 export default LoginReducer.reducer;

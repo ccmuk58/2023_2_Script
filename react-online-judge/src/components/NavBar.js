@@ -1,8 +1,12 @@
 import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 import { Container, Nav, NavDropdown, Navbar } from 'react-bootstrap';
-
+import { useSelector } from "react-redux";
+import { selectLogin } from "./LoginReducer";
 const NavBar = () => {
+	const loginState = useSelector(selectLogin);
+	const isLogin = loginState.isLogin; 
+	
 	return (
 		<div>
 			<Navbar bg="light" expand="lg">
@@ -15,7 +19,8 @@ const NavBar = () => {
 							<NavLink to='/ranking' className="nav-link">랭킹</NavLink>
 							<NavLink to='/search' className="nav-link">검색</NavLink>
 							<NavLink to='/profile' className="nav-link">프로필</NavLink>
-							<NavLink to='/login' className="nav-link">로그인</NavLink>
+							{!isLogin && <NavLink to='/login' className="nav-link">로그인</NavLink>}
+							{isLogin && <NavLink to='/logout' className="nav-link">로그아웃</NavLink>}
 						</Nav>
 					</Navbar.Collapse>
 				</Container>
