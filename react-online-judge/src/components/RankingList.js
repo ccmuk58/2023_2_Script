@@ -15,7 +15,7 @@ const RankingList = () => {
 				<tbody>
 					{
 						Object.entries(userData).map(([userId, { nickname, password, email, exp, solved}]) => (
-							<tr key={userId} to={`/profile/${userId}`}>
+							<tr key={userId} to={`/ranking/${userId}`}>
 								<td>
 									<Link className="nav-link" to={`/ranking/${userId}`}>
 									{userId}
