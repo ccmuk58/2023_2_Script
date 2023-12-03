@@ -4,7 +4,7 @@ const userData = {
 		nickname: '나쿠리',
         password: '1234',
         email: 'ccmuk58@naver.com',
-		exp : 0,
+		exp : 30,
 		solved : {
 			'1' : true,
 			'2' : false,
