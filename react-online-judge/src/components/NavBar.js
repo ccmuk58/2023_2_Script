@@ -19,8 +19,8 @@ const NavBar = () => {
 							<NavLink to='/problem' className="nav-link">문제</NavLink>
 							<NavLink to='/ranking' className="nav-link">랭킹</NavLink>
 							<NavLink to='/search' className="nav-link">검색</NavLink>
-							<NavLink to={`/profile/${userId}`} className="nav-link">프로필</NavLink>
 							{!isLogin && <NavLink to='/login' className="nav-link">로그인</NavLink>}
+							{isLogin && <NavLink to={`/profile/${userId}`} className="nav-link">프로필</NavLink>}
 							{isLogin && <NavLink to='/logout' className="nav-link">로그아웃</NavLink>}
 						</Nav>
 					</Navbar.Collapse>
