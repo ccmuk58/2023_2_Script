@@ -9,7 +9,7 @@ const Profile = () => {
 	if (!userID) {
 		return <span>유저를 찾을 수 없습니다.</span>
 	}
-	const { nickname, password, email, exp, solved } = userData[userID];
+	const { nickname, email, exp, solved } = userData[userID];
 	const solvedPoblems = [];
 	function solvedCount(solved) {
 		let count = 0;
