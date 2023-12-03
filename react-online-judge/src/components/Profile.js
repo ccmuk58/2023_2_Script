@@ -5,9 +5,10 @@ import { selectLogin } from "./LoginReducer";
 const Profile = () => {
 	const loginState = useSelector(selectLogin);
 	const userID = loginState.userID;
+	const isLogin = loginState.isLogin;
 
-	if (!userID) {
-		return <span>유저를 찾을 수 없습니다.</span>
+	if (!isLogin) {
+		return <span>로그인해주세요</span>
 	}
 	const { nickname, email, exp, solved } = userData[userID];
 	const solvedPoblems = [];
