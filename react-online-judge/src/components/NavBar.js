@@ -1,14 +1,13 @@
 import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 import { Container, Nav, NavDropdown, Navbar } from 'react-bootstrap';
-import Title from './Title';
 
 const NavBar = () => {
 	return (
 		<div>
 			<Navbar bg="light" expand="lg">
 				<Container>
-					<Navbar.Brand href="/">React-Online-Judge</Navbar.Brand>
+					<NavLink to='/' className="navbar-brand">React-Online-Judge</NavLink>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="me-auto">
