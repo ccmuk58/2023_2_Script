@@ -8,22 +8,27 @@ const ProblemItem = () => {
 	if (!problem) {
 		return <span>undefined</span>
 	}
-	const { title, description, difficult, input, output } = problem;
+	const { title, description, difficulty, input, output } = problem;
 	return (
 		<div className="content-item">
 			<h3>{title}</h3>
 			<hr />
+			난이도: {difficulty} | 시간 제한 : 1초 | 메모리 제한 : 1MB | 푼 사람: 0명
+			<hr />
 			<p>{description}</p>
 			<hr />
 
-			<div className="example">
-			<p>입력</p>
-			<p className="IO">{input}</p>
+			<div className="examples">
+				<div className="example">
+					<p>입력</p>
+					<p className="IO">{input}</p>
+				</div>
+				<div className="example">
+					<p>출력</p>
+					<p className="IO">{output}</p>
+				</div>
 			</div>
-			<div className="example">
-			<p>출력</p>
-			<p className="IO">{output}</p>
-			</div>
+
 		</div>
 	);
 }

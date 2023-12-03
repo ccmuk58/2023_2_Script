@@ -10,11 +10,18 @@
 	align-items: center;
 	height: 100vh;
 	margin: 0;
+	padding-top: 30px;
+	white-space: pre-line;
 }
 .content-item {
 	width: 65%;
 }
+.examples{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 
+}
 .example {
 	display: inline-block;
 	width: 40%;

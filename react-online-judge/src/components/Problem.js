@@ -4,7 +4,6 @@ const Problem = () => {
 
 	return (
 		<>
-			<h1 className="content-item">Problem Page</h1>
 			<Outlet />
 		</>
 	)
