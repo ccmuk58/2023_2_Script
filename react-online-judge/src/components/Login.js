@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch} from "react-redux";
 import {LoginState} from "./LoginReducer";
 import userData from "../data/userData";
+import { Button, FloatingLabel, Form } from "react-bootstrap";
 
 const Login = () => {
 	const [credit, setCredit] = useState({});
@@ -24,15 +25,19 @@ const Login = () => {
 	
 	return (
 		<>
-			<h1>Login Page</h1>
-			<div style={{padding: 10}}>
-				<span>Username: </span><br/>
-				<input type='text' 
-					onChange={(e) => setCredit({...credit, userID: e.target.value})}/><br/>
-				<span>Password: </span><br/>
-				<input type='password' 
-					onChange={(e) => setCredit({...credit, password: e.target.value})}/><br/>
-				<button onClick={handleLogin}>Login</button>
+			<h1 className="header">로그인</h1>
+			<div className="loginForm">
+				<FloatingLabel controlId="floatingInput" label="아이디">
+				<Form.Control type="text" placeholder="id" onChange={(e) => setCredit({...credit, userID: e.target.value})}/>
+				</FloatingLabel>
+				<FloatingLabel controlId="floatingInput" label="비밀번호">
+				<Form.Control type="password" placeholder="id" onChange={(e) => setCredit({...credit, password: e.target.value})}/>
+				</FloatingLabel>
+				<Button variant="secondary" onClick={handleLogin}>로그인</Button>
+
+			</div>
+			<div className="content-item">
+			<p className="credit">made by {"\n"}20201554 최장현{"\n"}20201554 안형진</p>
 			</div>
 		</>
 	);
