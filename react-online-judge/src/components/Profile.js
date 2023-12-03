@@ -22,7 +22,7 @@ const Profile = () => {
 	return (
 		<>
 			<div className="content-item">
-			<h1 className="header">프로필</h1>
+				<h1 className="header">프로필</h1>
 				<img className="profileImg" style={{
 					height: "300px", borderRadius: "50%",
 					border: "2px solid #111", marginBottom: "10px"
@@ -32,8 +32,8 @@ const Profile = () => {
 				<br />
 				<h1>{nickname}</h1>
 				<a href={`https://solved.ac/${userId}`}>
-				<img src={`http://mazassumnida.wtf/api/v2/generate_badge?boj=${userId}`}
-					alt="solveacImg"></img>
+					<img src={`http://mazassumnida.wtf/api/v2/generate_badge?boj=${userId}`}
+						alt="solveacImg"></img>
 				</a>
 				<p>{userId}</p>
 				<p>{email}</p>
