@@ -10,7 +10,8 @@ const ProblemItem = () => {
 	}
 	const { title, description, difficulty, input, output } = problem;
 	return (
-		
+		<div>
+			<h1 className="header">문제</h1>
 		<div className="content-item">
 			<h3>{title}</h3>
 			<hr />
@@ -28,6 +29,7 @@ const ProblemItem = () => {
 					<p>출력</p>
 					<p className="IO">{output}</p>
 				</div>
+			</div>
 			</div>
 
 		</div>

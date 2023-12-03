@@ -4,8 +4,6 @@ const Problem = () => {
 
 	return (
 		<>
-			<h1 className="header">문제</h1>
-			<hr />
 			<Outlet />
 		</>
 	)

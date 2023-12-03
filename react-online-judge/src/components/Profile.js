@@ -20,24 +20,31 @@ const Profile = () => {
 		return count;
 	}
 	return (
-		<div className="content-item">
-			<img className="profileImg" style={{height:"300px", borderRadius:"50%", 
-			border:"2px solid #111", marginBottom:"10px"}
-		} 
-			src={`/img/${userId}.png`} alt="profileImage"/>
-			<br/>
-			<h1>{nickname}</h1>
-			<img src={`http://mazassumnida.wtf/api/v2/generate_badge?boj=${userId}`}
-			 alt="solveacImg"></img>
-			<p>{userId}</p>
-			<p>{email}</p>
-			<p>경험치 : {exp}</p>
-			<p>푼 문제 : 총 {solvedCount(solved)}개</p>
-			<p>푼 문제 번호</p>
-			{solvedProblems.map((problemId) => (
-				<p style={{display:"inline-block"}}>{problemId}&nbsp;</p>
-			))}
-		</div>
+		<>
+			<h1 className="header">프로필</h1>
+			<div className="content-item">
+				<img className="profileImg" style={{
+					height: "300px", borderRadius: "50%",
+					border: "2px solid #111", marginBottom: "10px"
+				}
+				}
+					src={`/img/${userId}.png`} alt="profileImage" />
+				<br />
+				<h1>{nickname}</h1>
+				<a href={`https://solved.ac/${userId}`}>
+				<img src={`http://mazassumnida.wtf/api/v2/generate_badge?boj=${userId}`}
+					alt="solveacImg"></img>
+				</a>
+				<p>{userId}</p>
+				<p>{email}</p>
+				<p>경험치 : {exp}</p>
+				<p>푼 문제 : 총 {solvedCount(solved)}개</p>
+				<p>푼 문제 번호</p>
+				{solvedProblems.map((problemId) => (
+					<p style={{ display: "inline-block" }}>{problemId}&nbsp;</p>
+				))}
+			</div>
+		</>
 	);
 }
 export default Profile;

@@ -4,6 +4,7 @@ import userData from "../data/userData";
 const RankingList = () => {
 	return (
 		<div className="content-item">
+			<h1 className="header">랭킹</h1>
 			<Table striped bordered hover>
 				<thead>
 					<tr>

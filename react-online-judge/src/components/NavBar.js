@@ -9,7 +9,7 @@ const NavBar = () => {
 	const userId = loginState.userID; 
 	
 	return (
-		<div>
+		<div className='navigationBar'>
 			<Navbar bg="light" expand="lg">
 				<Container>
 					<NavLink to='/' className="navbar-brand">React-Online-Judge</NavLink>

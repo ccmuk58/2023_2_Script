@@ -4,6 +4,7 @@ import problemData from "../data/problemData";
 const ProblemList = () => {
 	return (
 		<div className="content-item">
+			<h1 className="header">문제 목록</h1>
 			<Table striped bordered hover>
 				<thead>
 					<tr>
