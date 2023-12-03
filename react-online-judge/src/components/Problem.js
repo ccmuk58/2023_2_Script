@@ -1,9 +1,11 @@
+import { Nav, Tab, Tabs } from "react-bootstrap";
+import { Link, NavLink, Outlet } from "react-router-dom";
 const Problem = () => {
 
 	return (
 		<>
-			<h1>Problem Page</h1>
-			
+			<h1 className="content-item">Problem Page</h1>
+			<Outlet />
 		</>
 	)
 }

@@ -3,8 +3,6 @@
 	background-color: light;
 	min-height: 100vh;
 }
-.parent-content {
-}
 
 .content {
 	display: flex;
@@ -14,5 +12,10 @@
 	margin: 0;
 }
 .content-item {
-	width: 70%;
+	width: 65%;
+}
+
+.example {
+	display: inline-block;
+	width: 50%;
 }
