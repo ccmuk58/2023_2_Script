@@ -1,16 +1,14 @@
+import { useParams } from "react-router-dom";
 import userData from "../data/userData";
-import { useSelector } from "react-redux";
-import { selectLogin } from "./LoginReducer";
 
 const Profile = () => {
-	const loginState = useSelector(selectLogin);
-	const userID = loginState.userID;
-	const isLogin = loginState.isLogin;
+	const { userId } = useParams();  // react-router-dom 에 정의된 후크
+	const user = userData[userId];
 
-	if (!isLogin) {
-		return <span>로그인해주세요</span>
+	if (!user) {
+		return <span>유저를 찾을 수 없습니다.</span>
 	}
-	const { nickname, email, exp, solved } = userData[userID];
+	const { nickname, password, email, exp, solved } = user;
 	const solvedPoblems = [];
 	function solvedCount(solved) {
 		let count = 0;
@@ -27,13 +25,12 @@ const Profile = () => {
 			<img className="profileImg" style={{height:"300px", borderRadius:"50%", 
 			border:"2px solid #111", marginBottom:"10px"}
 		} 
-			src={`/img/${userID}.png`} alt="profileImage"/>
+			src={`/img/${userId}.png`} alt="profileImage"/>
 			<br/>
 			<h1>{nickname}</h1>
-			<a href={`https://solved.ac/${userID}`}>
-				<img src={`http://mazassumnida.wtf/api/v2/generate_badge?boj=${userID}`}
-			 alt="solveacImg" style={{width:""}}></img></a>
-			<p>{userID}</p>
+			<img src={`http://mazassumnida.wtf/api/v2/generate_badge?boj=${userId}`}
+			 alt="solveacImg"></img>
+			<p>{userId}</p>
 			<p>{email}</p>
 			<p>경험치 : {exp}</p>
 			<p>푼 문제 : 총 {solvedCount(solved)}개</p>
