@@ -30,8 +30,9 @@ const Profile = () => {
 			src={`/img/${userID}.png`} alt="profileImage"/>
 			<br/>
 			<h1>{nickname}</h1>
-			<img src={`http://mazassumnida.wtf/api/v2/generate_badge?boj=${userID}`}
-			 alt="solveacImg"></img>
+			<a href={`https://solved.ac/${userID}`}>
+				<img src={`http://mazassumnida.wtf/api/v2/generate_badge?boj=${userID}`}
+			 alt="solveacImg" style={{width:""}}></img></a>
 			<p>{userID}</p>
 			<p>{email}</p>
 			<p>경험치 : {exp}</p>

@@ -4,7 +4,7 @@ const Problem = () => {
 
 	return (
 		<>
-			<h2>문제</h2>
+			<h1 className="header">문제</h1>
 			<hr />
 			<Outlet />
 		</>
