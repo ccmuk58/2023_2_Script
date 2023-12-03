@@ -21,8 +21,8 @@ const Profile = () => {
 	}
 	return (
 		<>
-			<h1 className="header">프로필</h1>
 			<div className="content-item">
+			<h1 className="header">프로필</h1>
 				<img className="profileImg" style={{
 					height: "300px", borderRadius: "50%",
 					border: "2px solid #111", marginBottom: "10px"
