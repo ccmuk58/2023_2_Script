@@ -23,10 +23,13 @@ const Profile = () => {
 	return (
 		<div className="content-item">
 			<img className="profileImg" style={{height:"300px", borderRadius:"50%", 
-			border:"2px solid #111", marginBottom:"10px"}			
+			border:"2px solid #111", marginBottom:"10px"}
 		} 
 			src={`/img/${userId}.png`} alt="profileImage"/>
+			<br/>
 			<h1>{nickname}</h1>
+			<img src={`http://mazassumnida.wtf/api/v2/generate_badge?boj=${userId}`}
+			 alt="solveacImg"></img>
 			<p>{userId}</p>
 			<p>{email}</p>
 			<p>경험치 : {exp}</p>
