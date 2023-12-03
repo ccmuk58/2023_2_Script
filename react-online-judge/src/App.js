@@ -6,6 +6,7 @@ import Problem from "./components/Problem";
 import Ranking from "./components/Ranking";
 import Search from "./components/Search";
 import Profile from "./components/Profile";
+import Login from "./components/Login";
 
 const AppRouter = () => {
 	return (
@@ -17,6 +18,7 @@ const AppRouter = () => {
 				<Route path="/ranking" element={<Ranking />} />
 				<Route path="/search" element={<Search />} />
 				<Route path="/profile" element={<Profile />} />
+				<Route path="/Login" element={<Login />} />
 			</Routes>
 		</>
 
