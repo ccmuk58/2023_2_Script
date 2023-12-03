@@ -11,17 +11,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AppRouter = () => {
 	return (
-		<>
+		<div>
 			<NavBar />
-			<Routes>
-				<Route path="/" element={<Title />} />
-				<Route path="/problem" element={<Problem />} />
-				<Route path="/ranking" element={<Ranking />} />
-				<Route path="/search" element={<Search />} />
-				<Route path="/profile" element={<Profile />} />
-				<Route path="/login" element={<Login />} />
-			</Routes>
-		</>
+			<div className="content">
+				<Routes>
+					<Route path="/" element={<Title />} />
+					<Route path="/problem" element={<Problem />} />
+					<Route path="/ranking" element={<Ranking />} />
+					<Route path="/search" element={<Search />} />
+					<Route path="/profile" element={<Profile />} />
+					<Route path="/login" element={<Login />} />
+				</Routes>
+			</div>
+		</div>
 
 	)
 }
@@ -29,7 +31,9 @@ const AppRouter = () => {
 function App() {
 	return (
 		<Router>
-			<AppRouter />
+			<div className="App">
+				<AppRouter />
+			</div>
 		</Router>
 	);
 }
