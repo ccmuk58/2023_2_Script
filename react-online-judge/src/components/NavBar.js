@@ -1,19 +1,28 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink, Route, Switch } from 'react-router-dom';
+import { Container, Nav, NavDropdown, Navbar } from 'react-bootstrap';
+import Title from './Title';
 
 const NavBar = () => {
-  return (
-    <div>
-      <nav style={{margin: 10}}>
-        <NavLink to='/' style={{padding: 5}}>ROJ</NavLink>
-        <NavLink to='/problem' style={{padding: 5}}>문제</NavLink>
-        <NavLink to='/ranking' style={{padding: 5}}>랭킹</NavLink>
-        <NavLink to='/search' style={{padding: 5}}>검색</NavLink>
-        <NavLink to='/profile' style={{padding: 5}}>프로필</NavLink>
-        <NavLink to='/login' style={{padding: 5}}>로그인</NavLink>
-      </nav>
-    </div>
-  );
+	return (
+		<div>
+			<Navbar bg="light" expand="lg">
+				<Container>
+					<Navbar.Brand href="/">React-Online-Judge</Navbar.Brand>
+					<Navbar.Toggle aria-controls="basic-navbar-nav" />
+					<Navbar.Collapse id="basic-navbar-nav">
+						<Nav className="me-auto">
+							<NavLink to='/problem' className="nav-link">문제</NavLink>
+							<NavLink to='/ranking' className="nav-link">랭킹</NavLink>
+							<NavLink to='/search' className="nav-link">검색</NavLink>
+							<NavLink to='/profile' className="nav-link">프로필</NavLink>
+							<NavLink to='/login' className="nav-link">로그인</NavLink>
+						</Nav>
+					</Navbar.Collapse>
+				</Container>
+			</Navbar>
+		</div>
+	);
 }
 
 export default NavBar;
