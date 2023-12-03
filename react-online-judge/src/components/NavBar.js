@@ -10,7 +10,7 @@ const NavBar = () => {
 	
 	return (
 		<div className='navigationBar'>
-			<Navbar bg="light" expand="lg">
+			<Navbar expand="lg" style={{backgroundColor:"#f8f9faee"}}>
 				<Container>
 					<NavLink to='/' className="navbar-brand">React-Online-Judge</NavLink>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
