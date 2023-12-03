@@ -16,7 +16,7 @@ const ProblemList = () => {
 				<tbody>
 					{
 						Object.entries(problemData).map(([problemId, { title, description, difficulty, solved }]) => (
-							<tr key={problemId}>
+							<tr key={problemId} to={`/problem/${problemId}`}>
 								<td>
 									<Link className="nav-link" to={`/problem/${problemId}`}>
 										{problemId}

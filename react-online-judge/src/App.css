@@ -17,5 +17,17 @@
 
 .example {
 	display: inline-block;
-	width: 50%;
+	width: 40%;
+	padding: 1em;
+	margin: 1em;
+	border: 1px solid #ccc;
+	border-radius: 1em;
+}
+.example .IO{
+	text-align: left;
+	height: 128px;
+	border: 1px solid #ccc;
+	border-radius: 1em;
+	padding: 1em;
+	background-color: #e9ecef;
 }

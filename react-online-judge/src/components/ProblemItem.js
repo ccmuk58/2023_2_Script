@@ -1,4 +1,5 @@
-import { Form, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import Form from 'react-bootstrap/Form';
 import problemData from "../data/problemData";
 const ProblemItem = () => {
 	const { problemId } = useParams();  // react-router-dom 에 정의된 후크
@@ -14,12 +15,15 @@ const ProblemItem = () => {
 			<hr />
 			<p>{description}</p>
 			<hr />
-			
-			
-			<p className="example">입력</p>
-			<p className="example">출력</p>
-			<p className="example">{input}</p>
-			<p className="example">{output}</p>
+
+			<div className="example">
+			<p>입력</p>
+			<p className="IO">{input}</p>
+			</div>
+			<div className="example">
+			<p>출력</p>
+			<p className="IO">{output}</p>
+			</div>
 		</div>
 	);
 }
