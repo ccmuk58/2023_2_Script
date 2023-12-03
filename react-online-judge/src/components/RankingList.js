@@ -15,19 +15,19 @@ const RankingList = () => {
 				<tbody>
 					{
 						Object.entries(userData).map(([userId, { nickname, password, email, exp, solved}]) => (
-							<tr key={userId} to={`/ranking/${userId}`}>
+							<tr key={userId} to={`/profile/${userId}`}>
 								<td>
-									<Link className="nav-link" to={`/ranking/${userId}`}>
+									<Link className="nav-link" to={`/profile/${userId}`}>
 									{userId}
 									</Link>
 								</td>
 								<td>
-									<Link className="nav-link" to={`/ranking/${userId}`}>
+									<Link className="nav-link" to={`/profile/${userId}`}>
 										{nickname}
 									</Link>
 								</td>
 								<td>
-									<Link className="nav-link" to={`/ranking/${userId}`}>
+									<Link className="nav-link" to={`/profile/${userId}`}>
 										{exp}
 									</Link>
 								</td>

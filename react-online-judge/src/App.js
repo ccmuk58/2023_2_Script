@@ -3,7 +3,6 @@ import './App.css';
 import NavBar from "./components/NavBar";
 import Title from "./components/Title";
 import Problem from "./components/Problem";
-import Ranking from "./components/Ranking";
 import Search from "./components/Search";
 import Profile from "./components/Profile";
 import Login from "./components/Login";
@@ -25,13 +24,10 @@ const AppRouter = () => {
 						<Route index element={<ProblemList />} />
 						<Route path=':problemId' element={<ProblemItem />} />
 					</Route>
-					<Route path="/ranking" element={<Ranking />} >
-						<Route index element={<RankingList />} />
-						<Route path=':userId' element={<Profile />} />
-					</Route>
+					<Route path='ranking' element={<RankingList />} />
 					<Route path="/search" element={<Search />} />
 					{/*로그인된 아이디로 프로필 접근 처리*/}
-					<Route path="/profile" element={<Profile />} />
+					<Route path="/profile/:userId" element={<Profile />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/logout" element={<Logout />} />
 					<Route path='*' element={<ErrorPage />} />
