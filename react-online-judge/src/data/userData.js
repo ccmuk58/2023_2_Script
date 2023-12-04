@@ -4,7 +4,7 @@ const userData = {
 		nickname: '나쿠리',
         password: '1234',
         email: 'ccmuk58@naver.com',
-		exp : 30,
+		exp : 350,
 		solved : [
 			true, true, false, true, false
 		],
@@ -15,7 +15,7 @@ const userData = {
 		nickname: '핵가야',
         password: '5678',
         email: 'rihu@naver.com',
-		exp : 0,
+		exp : 230,
 		solved : [
 			true, true, false, true, false
 		],
@@ -27,7 +27,7 @@ const userData = {
 		nickname: 'rulerofcakes',
 		password: '0000',
 		email: 'andrewmjk@naver.com',
-		exp : 0,
+		exp : 460,
 		solved : [
 			true, true, false, true, false
 		],
