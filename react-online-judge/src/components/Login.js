@@ -37,7 +37,7 @@ const Login = () => {
 
 			</div>
 			<div className="content-item">
-			<p className="credit">made by {"\n"}20201554 최장현{"\n"}20201554 안형진</p>
+			<p className="credit">made by {"\n"}20201554 최장현{"\n"}20201084 안형진</p>
 			</div>
 		</>
 	);
