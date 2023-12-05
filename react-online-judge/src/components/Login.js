@@ -11,14 +11,14 @@ const Login = () => {
 	const dispatch = useDispatch();
 	const handleLogin = () => {
 		// 사용자 확인
-		if (credit.userID in userData) {
-			if (userData[credit.userID].password === credit.password) {
-				dispatch(LoginState({ userID: credit.userID, nickname: userData[credit.userID].nickname }));
+		if (credit.userID in userData) { // 아이디 존재
+			if (userData[credit.userID].password === credit.password) { // 비밀번호까지 일치하면
+				dispatch(LoginState({ userID: credit.userID, nickname: userData[credit.userID].nickname })); // 로그인 성공
 				navigate('/');
-			} else {
+			} else { // 비밀번호 불일치
 				alert('존재하지 않는 아이디 또는 비밀번호가 일치하지 않습니다.');
 			}
-		} else {
+		} else { // 아이디 존재 X
 			alert('존재하지 않는 아이디 또는 비밀번호가 일치하지 않습니다.');
 		}
 	};
