@@ -1,3 +1,4 @@
+// RankingList.js
 import { Link } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import userData from "../data/userData";

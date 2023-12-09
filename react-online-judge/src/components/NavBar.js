@@ -5,8 +5,8 @@ import { useSelector } from "react-redux";
 import { selectLogin } from "./LoginReducer";
 const NavBar = () => {
 	const loginState = useSelector(selectLogin);
-	const isLogin = loginState.isLogin;
-	const userId = loginState.userID; 
+	const userKey = loginState.userKey; 
+	const isLogin = (userKey !== null); 
 	
 	return (
 		<div className='navigationBar'>
@@ -21,7 +21,7 @@ const NavBar = () => {
 							<NavLink to='/search' className="nav-link">검색</NavLink>
 							{!isLogin && <NavLink to='/login' className="nav-link">로그인</NavLink>}
 							{!isLogin && <NavLink to='/register' className="nav-link">회원가입</NavLink>}							
-							{isLogin && <NavLink to={`/profile/${userId}`} className="nav-link">프로필</NavLink>}
+							{isLogin && <NavLink to={`/profile/${userKey}`} className="nav-link">프로필</NavLink>}
 							{isLogin && <NavLink to='/logout' className="nav-link">로그아웃</NavLink>}
 						</Nav>
 					</Navbar.Collapse>

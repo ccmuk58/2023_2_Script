@@ -23,7 +23,7 @@ const Register = () => {
 		else{
 			const docRef = await addDoc(collection(db, 'Members'), credit);
 
-			dispatch(LoginState({ userID: docRef.id, nickname: credit.nickname }));
+			dispatch(LoginState({ userKey: docRef.id, nickname: credit.nickname }));
 			navigate('/');
 		} 
 	};

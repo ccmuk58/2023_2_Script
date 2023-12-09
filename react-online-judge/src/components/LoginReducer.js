@@ -7,19 +7,15 @@ export const LoginReducer = createSlice({
     name: 'LoginState',
     initialState: {
         userKey : null,
-        userID: null,
         nickname: null,
     },
     reducers: {
         LoginState: (state, action) => {
-            const { userID, nickname, userKey } = action.payload;
-            state.isLogin = true;
-            state.userID = userID;
+            const { userKey, nickname} = action.payload;
             state.nickname = nickname;
             state.userKey = userKey;
         },
         LogoutState: (state) => {
-            state.userID = null;
             state.nickname = null;
             state.userKey = null;
         },
@@ -30,8 +26,7 @@ export const {LoginState, LogoutState} = LoginReducer.actions;
 
 // 상태 값을 전달하는 함수 정의
 export const selectLogin = (state) => ({
-    isLogin: state.LoginState.isLogin,
-    userID: state.LoginState.userID,
+    userKey: state.LoginState.userKey,
     nickname: state.LoginState.nickname,
 });
 

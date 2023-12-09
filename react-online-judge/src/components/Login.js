@@ -15,17 +15,17 @@ const Login = () => {
 		// Firestore에서 'id' 필드 값이 credit.userID와 일치하는 사용자 찾기
 		const q = query(collection(db, 'Members'), where('ID', '==', credit.userID));
 		const querySnapshot = await getDocs(q);
-		console.log('querySnapshot:', querySnapshot);
 
 		// 해당 사용자가 존재하는지 확인
 		if (!querySnapshot.empty) {
 			const userDoc = querySnapshot.docs[0];
-			const userData = userDoc.data(); 
+			const userData = userDoc.data();  
 
 			// 비밀번호 비교
 			if (userData.PW === credit.password) {
 				// 비밀번호 일치 시 로그인 성공
-				dispatch(LoginState({ userID: userDoc.id, nickname: userData.nickname }));
+				dispatch(LoginState({ userKey: userDoc.id, nickname: userData.nickname}));
+				alert(`${userDoc.id}`);
 				navigate('/');
 			} else {
 				// 비밀번호 불일치
