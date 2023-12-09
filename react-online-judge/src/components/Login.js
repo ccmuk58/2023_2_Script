@@ -1,46 +1,58 @@
+import {collection, getDocs, query, where } from 'firebase/firestore';
 import { useNavigate } from "react-router-dom";
+import {db} from "./firebaseinit";
 import { useState } from "react";
-import { useDispatch} from "react-redux";
-import {LoginState} from "./LoginReducer";
-import userData from "../data/userData";
+import { useDispatch } from "react-redux";
+import { LoginState } from "./LoginReducer";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 
 const Login = () => {
-	const [credit, setCredit] = useState({});
-	const navigate = useNavigate();
-	const dispatch = useDispatch();
-	const handleLogin = () => {
-		// 사용자 확인
-		if (credit.userID in userData) { // 아이디 존재
-			if (userData[credit.userID].password === credit.password) { // 비밀번호까지 일치하면
-				dispatch(LoginState({ userID: credit.userID, nickname: userData[credit.userID].nickname })); // 로그인 성공
-				navigate('/');
-			} else { // 비밀번호 불일치
-				alert('존재하지 않는 아이디 또는 비밀번호가 일치하지 않습니다.');
-			}
-		} else { // 아이디 존재 X
-			alert('존재하지 않는 아이디 또는 비밀번호가 일치하지 않습니다.');
-		}
-	};
-	
-	return (
-		<>
-			<h1 className="header">로그인</h1>
-			<div className="loginForm">
-				<FloatingLabel controlId="floatingInput" label="아이디">
-				<Form.Control type="text" placeholder="id" onChange={(e) => setCredit({...credit, userID: e.target.value})}/>
-				</FloatingLabel>
-				<FloatingLabel controlId="floatingInput" label="비밀번호">
-				<Form.Control type="password" placeholder="id" onChange={(e) => setCredit({...credit, password: e.target.value})}/>
-				</FloatingLabel>
-				<Button variant="secondary" onClick={handleLogin}>로그인</Button>
+  const [credit, setCredit] = useState({});
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-			</div>
-			<div className="content-item">
-			<p className="credit">made by {"\n"}20201554 최장현{"\n"}20201084 안형진</p>
-			</div>
-		</>
-	);
-}
+  const handleLogin = async () => {
+    try {
+      // Firestore에서 'id' 필드 값이 credit.userID와 일치하는 사용자 찾기
+      const q = query(collection(db, 'Members'), where('ID', '==', credit.userID));
+      const querySnapshot = await getDocs(q);
+	  console.log('querySnapshot:', querySnapshot);
+
+      // 해당 사용자가 존재하는지 확인
+      if (!querySnapshot.empty) {
+        const userDoc = querySnapshot.docs[0];
+        const userData = userDoc.data(); 
+
+        // 비밀번호 비교
+        if (userData.PW === credit.password) {
+          // 비밀번호 일치 시 로그인 성공
+          dispatch(LoginState({ userID: userDoc.id, nickname: userData.nickname }));
+          navigate('/');
+        } else {
+          // 비밀번호 불일치
+          alert('비밀번호가 일치하지 않습니다.');
+        }
+      } else {
+        // 해당 사용자가 존재하지 않음
+        alert('존재하지 않는 아이디입니다.');
+      }
+    } catch (error) {
+      console.error('로그인 중 오류 발생:', error);
+      alert('로그인 중 오류가 발생했습니다.');
+    }
+  };
+
+  return (
+    <>
+      <FloatingLabel controlId="floatingInput" label="아이디">
+        <Form.Control type="text" placeholder="id" onChange={(e) => setCredit({...credit, userID: e.target.value})}/>
+      </FloatingLabel>
+      <FloatingLabel controlId="floatingInput" label="비밀번호">
+        <Form.Control type="password" placeholder="password" onChange={(e) => setCredit({...credit, password: e.target.value})}/>
+      </FloatingLabel>
+      <Button variant="secondary" onClick={handleLogin}>로그인</Button>
+    </>
+  );
+};
 
 export default Login;
