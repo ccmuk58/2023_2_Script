@@ -21,7 +21,7 @@ const problemData = {
 		exinput: `5\n1 3 4 2 5`,
 		exoutput: '5 4 3 2 1',
 		input:["5 1 3 4 2 5", "10 1 2 3 4 5 6 7 8 9 10", "1 10"],
-		output:["5 4 3 2 1", "10 9 8 7 6 5 4 3 2 1", "10"],
+		output:["5 4 3 2 1 ", "10 9 8 7 6 5 4 3 2 1 ", "10 "],
 		algorithms: ['정렬'],
 		solved: false,
 	},
