@@ -9,7 +9,7 @@ import { Button, FloatingLabel, Form } from "react-bootstrap";
 const Login = () => {
 	const [credit, setCredit] = useState({});
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	const dispatch = useDispatch(); 
 
 	const handleLogin = async () => {
 		// Firestore에서 'id' 필드 값이 credit.userID와 일치하는 사용자 찾기
