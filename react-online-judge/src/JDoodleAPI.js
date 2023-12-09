@@ -23,5 +23,21 @@ const JDoodleAPI = {
 			throw error;
 		}	
 	},
+	getCredit: async () => {
+		const url = '/credit';
+		const program =
+		{
+			clientId: process.env.REACT_APP_JDOODLE_CLIENT_ID,
+			clientSecret: process.env.REACT_APP_JDOODLE_CLIENT_SECRET,
+			projectKey:1001,
+		};
+		try {
+			const response = await axios.post(url, program);
+			return response.data;
+		} catch (error) {
+			console.error('Error get credit:', error);
+			throw error;
+		}	
+	},
 };
 export default JDoodleAPI;

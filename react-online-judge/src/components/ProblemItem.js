@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import problemData from "../data/problemData";
 import Button from 'react-bootstrap/Button';
-import { memo, useState } from "react";
+import { useEffect, useState } from "react";
 import JDoodleAPI from "../JDoodleAPI";
 
 const ProblemItem = () => {
@@ -19,9 +19,18 @@ const ProblemItem = () => {
 	const [memory, setMemory] = useState('');
 	const [apiOutput, setApiOutput] = useState('');
 	const [result, setResult] = useState('');
+	const [credit, setCredit] = useState('');
 
+	
+	useEffect(() => {
+		const checkCredit = async () => {
+			const c = await JDoodleAPI.getCredit();
+			setCredit(c.used);
+		};
 
-
+		checkCredit();
+	});
+	
 	const checkResult = () => {
 		Promise.all([JDoodleAPI.executeCode(code, language, input[0]),
 		JDoodleAPI.executeCode(code, language, input[1]),
@@ -66,7 +75,7 @@ const ProblemItem = () => {
 		setLoading(false);
 	};
 
-
+	
 
 	if (!problem) {
 		return <span>undefined</span>
@@ -120,6 +129,8 @@ const ProblemItem = () => {
 					<Button variant="primary" type="submit" disabled={loading} className="mt-1">
 						{loading ? '채점중..' : '제출'}
 					</Button>
+					<br />
+					사용 크레딧(제출당 3) : {credit} / 200
 				</div>
 
 				<div className="content-item-div">
@@ -136,11 +147,7 @@ const ProblemItem = () => {
 						<Form.Control type="text" value={result} readOnly />
 					</Form.Group>
 				</div>
-
-
 			</Form>
-
-
 		</div>
 	);
 }
