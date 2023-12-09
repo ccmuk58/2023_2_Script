@@ -25,7 +25,6 @@ const Login = () => {
 			if (userData.PW === credit.password) {
 				// 비밀번호 일치 시 로그인 성공
 				dispatch(LoginState({ userKey: userDoc.id, nickname: userData.nickname}));
-				alert(`${userDoc.id}`);
 				navigate('/');
 			} else {
 				// 비밀번호 불일치

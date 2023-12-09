@@ -4,8 +4,16 @@ import problemData from "../data/problemData";
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from "react";
 import JDoodleAPI from "../JDoodleAPI";
+import { useSelector } from "react-redux";
+import { selectLogin } from "./LoginReducer";
+import { useNavigate } from "react-router-dom";
 
 const ProblemItem = () => {
+	const navigate = useNavigate();
+	const loginState = useSelector(selectLogin);
+	const userKey = loginState.userKey; 
+	const isLogin = (userKey !== null); 
+
 	const { problemId } = useParams();  // react-router-dom 에 정의된 후크
 	const problem = problemData[problemId];
 	const { title, description, difficulty,
@@ -29,7 +37,7 @@ const ProblemItem = () => {
 		};
 
 		checkCredit();
-	});
+	},);
 	
 	const checkResult = () => {
 		Promise.all([JDoodleAPI.executeCode(code, language, input[0]),
@@ -69,10 +77,16 @@ const ProblemItem = () => {
 		setCode(e.target.value);
 	};
 	const handleSubmit = (e) => {
+		if(isLogin){
 		e.preventDefault();
 		setLoading(true);
 		checkResult();
 		setLoading(false);
+		}
+		else{
+			alert("로그인이 필요합니다.");
+			navigate('/login');
+		}
 	};
 
 	
