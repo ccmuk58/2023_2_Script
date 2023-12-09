@@ -25,15 +25,16 @@
 .content-item-div{
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: space-around;
+	border: 1px solid #ccc;
+	border-radius: 1em;
+	margin: 10px 0 10px 0;
 }
 
 .example {
-	display: inline-block;
 	width: 40%;
 	padding: 1em;
 	margin: 1em;
-	border: 1px solid #ccc;
 	border-radius: 1em;
 }
 

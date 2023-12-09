@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const JDoodleAPI = {
-	executeCode: async (code, language) => {
+	executeCode: async (code, language, input) => {
 		const url = '/jdoodle';
 		const program =
 		{
@@ -10,7 +10,7 @@ const JDoodleAPI = {
 			libs:[],
 			projectKey:1001,
 			script:code,	
-			stdin:"",
+			stdin:input,
 			versionIndex:0,
 			clientId: process.env.REACT_APP_JDOODLE_CLIENT_ID,
 			clientSecret: process.env.REACT_APP_JDOODLE_CLIENT_SECRET,
