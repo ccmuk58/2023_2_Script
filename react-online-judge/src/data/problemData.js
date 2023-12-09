@@ -14,18 +14,21 @@ const problemData = {
 		
 		`,
 		difficulty: 'Silver',
+		timeLimit: 1,
+		memoryLimit: 256,
 		inputLimit: '첫 번째 줄에 수열의 크기 N이 주어진다. (1 ≤ N ≤ 10)\n두 번째 줄에 N개의 정수가 주어진다. 이 수는 모두 1 이상 100 이하이다.',
 		ouputLimit: '주어진 수열을 내림차순으로 정렬한 결과를 출력한다.',
 		exinput: `5\n1 3 4 2 5`,
 		exoutput: '5 4 3 2 1',
 		input:["5 1 3 4 2 5", "10 1 2 3 4 5 6 7 8 9 10", "1 10"],
 		output:["5 4 3 2 1", "10 9 8 7 6 5 4 3 2 1", "10"],
-		solved: false,
 		algorithms: ['정렬'],
+		solved: false,
 	},
+
 	'2': {
 		title: '음악만이 나라에서 허락한 유일한 보약이니까',
-		description: `
+		description: `	
 		장현이는 요즘 새벽에 코딩을 하면서 노래를 듣는다.
 		특히 자주듣는 노래가 있는데, 안타깝게도 제목을 잊어버렸다.
 		아래 가사를 보고 제목을 맞춰보자.
@@ -48,19 +51,17 @@ const problemData = {
 		------------------------
 		`,
 		difficulty: 'Bronze',
+		timeLimit: 1,
+		memoryLimit: 256,
+		inputLimit: '첫 번째 줄에 ',
+		ouputLimit: '주어진 수열을 내림차순으로 정렬한 결과를 출력한다.',
 		exinput: 'Snow',
 		exoutput: 'Wrong Answer',
+		input:["Cilla"],
+		output:["정답입니다!"],
+		algorithms: ['애드 혹'],
 		solved: false,
-		algorithms: ['애드혹'],
 	},
-	'3': {
-		title: '제목 3',
-		description: 'This is the third problem.',
-		difficulty: 'Gold',
-		exinput: '5\n1 2 3 4 5',
-		exoutput: '3 7',
-		solved: false,
-		algorithms: ['수학'],
-	},
+
 }
 export default problemData;
