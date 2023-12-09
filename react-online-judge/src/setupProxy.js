@@ -10,4 +10,13 @@ module.exports = function(app){
 	  changeOrigin: true,
     })
   );
+  app.use(
+	createProxyMiddleware('/credit', {
+	  target: 'https://api.jdoodle.com/v1/credit-spent',
+	  pathRewrite: {
+		'^/credit':''
+	  },
+	  changeOrigin: true,
+	})
+  );
 };
