@@ -4,13 +4,14 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth"; 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCjNSrJ3ZzSUb8PRhNxrxZz2vOTLjJHMZ0",
-  authDomain: "react-online-judge.firebaseapp.com",
-  projectId: "react-online-judge",
-  storageBucket: "react-online-judge.appspot.com",
-  messagingSenderId: "1081300710178",
-  appId: "1:1081300710178:web:07470f21fd50bc782bab7b",
-  measurementId: "G-D9T7941K5S"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
+
 };
 
 // Initialize Firebase

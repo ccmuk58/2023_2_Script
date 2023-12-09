@@ -20,6 +20,7 @@ const NavBar = () => {
 							<NavLink to='/ranking' className="nav-link">랭킹</NavLink>
 							<NavLink to='/search' className="nav-link">검색</NavLink>
 							{!isLogin && <NavLink to='/login' className="nav-link">로그인</NavLink>}
+							{!isLogin && <NavLink to='/register' className="nav-link">회원가입</NavLink>}							
 							{isLogin && <NavLink to={`/profile/${userId}`} className="nav-link">프로필</NavLink>}
 							{isLogin && <NavLink to='/logout' className="nav-link">로그아웃</NavLink>}
 						</Nav>

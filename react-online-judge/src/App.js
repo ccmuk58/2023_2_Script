@@ -6,6 +6,7 @@ import Problem from "./components/Problem";
 import Search from "./components/Search";
 import Profile from "./components/Profile";
 import Login from "./components/Login";
+import Register from "./components/Register";
 import Logout from "./components/Logout";
 import ProblemList from "./components/ProblemList";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -29,6 +30,7 @@ const AppRouter = () => {
 					{/*로그인된 아이디로 프로필 접근 처리*/}
 					<Route path="/profile/:userId" element={<Profile />} />
 					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
 					<Route path="/logout" element={<Logout />} />
 					<Route path='*' element={<ErrorPage />} />
 				</Routes>
