@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
+import { db  } from "./firebaseinit";
 import userData from "../data/userData";
+
 const Profile = () => {
 	const { userId } = useParams();  // react-router-dom 에 정의된 후크
 	const user = userData[userId];
@@ -7,9 +9,9 @@ const Profile = () => {
 	if (!user) {
 		return <span>유저를 찾을 수 없습니다.</span>
 	}
-	const { nickname, password, email, exp, solved } = user;
-	const solvedProblems = [];
-	function solvedCount(solved) {
+		const { nickname, password, email, exp, solved } = user;
+		const solvedProblems = [];
+		function solvedCount(solved) {
 		let count = 0;
 		for (let i = 0; i < solved.length; i++) {
 			if (solved[i] === true) {
@@ -19,6 +21,7 @@ const Profile = () => {
 		}
 		return count;
 	}
+	
 	return (
 		<>
 			<div className="content-item">

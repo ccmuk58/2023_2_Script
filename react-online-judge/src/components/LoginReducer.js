@@ -6,21 +6,22 @@ import {createSlice} from '@reduxjs/toolkit';
 export const LoginReducer = createSlice({
     name: 'LoginState',
     initialState: {
-        isLogin: false,
+        userKey : null,
         userID: null,
         nickname: null,
     },
     reducers: {
         LoginState: (state, action) => {
-            const { userID, nickname } = action.payload;
+            const { userID, nickname, userKey } = action.payload;
             state.isLogin = true;
             state.userID = userID;
-            state.nickname = nickname
+            state.nickname = nickname;
+            state.userKey = userKey;
         },
         LogoutState: (state) => {
-            state.isLogin = false;
             state.userID = null;
             state.nickname = null;
+            state.userKey = null;
         },
     },
 })
