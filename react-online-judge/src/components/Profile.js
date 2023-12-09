@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { db } from "./firebaseinit";
 import { collection, getDoc,doc, query, where } from 'firebase/firestore';
-import userData from "../data/userData";
 import { useState } from "react";
 import { useEffect } from "react";
 
