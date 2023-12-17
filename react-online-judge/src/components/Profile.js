@@ -22,7 +22,7 @@ const Profile = () => {
 	}
 	const { nickname, ID, email, exp, solved } = user;
 	const solvedProblems = [];
-	const userClass = getClassColor(exp);
+	const userClass = getClassName(exp);
 	const classColor = getClassColor(exp);
 	const userClassExp = exp % 100;
 	const solvedCount = solved.length;
