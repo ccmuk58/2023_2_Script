@@ -31,13 +31,6 @@
 	margin: 10px 0 10px 0;
 	padding: 10px;
 }
-.content-item-div-div{
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	margin: 10px 0 10px 0;
-}
 
 .example {
 	width: 40%;
@@ -75,7 +68,6 @@
 }
 .exp-bar-inner{
 	height: 100%;
-	background-color: #4CAF50;
 	border-radius: 5px;
 }
 
