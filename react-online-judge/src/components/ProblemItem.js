@@ -38,7 +38,6 @@ const ProblemItem = () => {
 	const [loading, setLoading] = useState(false);
 	const [cpuTime, setCpuTime] = useState('');
 	const [memory, setMemory] = useState('');
-	const [apiOutput, setApiOutput] = useState('');
 	const [result, setResult] = useState('');
 	const [credit, setCredit] = useState('');
 
@@ -164,7 +163,12 @@ const ProblemItem = () => {
 					<div className="Limit" dangerouslySetInnerHTML={{__html:  outputLimit}}></div>
 					<div className="IO" dangerouslySetInnerHTML={{__html:  exoutput}}></div>
 				</div>
-				
+			</div>
+			<h5>알고리즘 분류</h5>
+			<div className="content-item-div">
+				{algorithms?.map((algorithm) => (
+					<p style={{ display: "inline-block" }}>{algorithm}&nbsp;</p>
+				))}
 			</div>
 	
 			<Form onSubmit={handleSubmit}>
@@ -177,13 +181,8 @@ const ProblemItem = () => {
 						<option value="java">Java</option>
 						<option value="php">PHP</option>
 						<option value="csharp">C#</option>
-						<option value="pascal">Pascal</option>
 						<option value="objc">Objective-C</option>
 						<option value="rust">Rust</option>
-						<option value="ruby">Ruby</option>
-						<option value="perl">Perl</option>
-						<option value="scala">Scala</option>
-						<option value="swift">Swift</option>
 						<option value="go">Go</option>
 						<option value="nodejs">NodeJS</option>
 					</Form.Control>
