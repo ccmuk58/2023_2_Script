@@ -27,6 +27,7 @@ const Profile = () => {
 	}
 	const { nickname, ID, PW, email, exp, solved } = user;
 	const classes = ["Bronze", "Silver", "Gold", "Platinum", "Diamond", "Ruby"];
+	const classColor = ["#cd7f32", "#6E6E6E", "#FFBF00", "#01DFA5", "#00BFFF", "#FF0040"];
 	const solvedProblems = [];
 	const userClass = classes[Math.floor(exp / 100)];
 	const userClassExp = 100 - exp % 100;
@@ -54,13 +55,17 @@ const Profile = () => {
 				<h1 style={{ fontWeight: "bold" }}>{nickname}</h1>
 				<p>{email}</p>
 
-				<div className="content-item-div">
-					<p>클래스 : {userClass}</p>
-					<p>총 경험치 : {exp}</p>
-					<p>남은 경험치 : {userClassExp}</p>
+				<div className="content-item-div" style={{justifyContent:"space-between"}}>
+					<p style={{ width: "100%",fontWeight:"bold", color: classColor[classes.indexOf(userClass)] }}>{userClass}</p>
 					<div className="exp-bar">
-						<div className="exp-bar-inner" style={{ width: `${100-userClassExp}%` }}></div>
+						<div className="exp-bar-inner" style={{
+							width: `${100 - userClassExp}%`,
+							backgroundColor: classColor[classes.indexOf(userClass)]
+						}}></div>
+
 					</div>
+						<p>{userClassExp}/100</p>
+						<p>총 {exp}EXP</p>
 				</div>
 				<div className="content-item-div">
 					<p>푼 문제 : 총 {solvedCount(solved)}개</p>
