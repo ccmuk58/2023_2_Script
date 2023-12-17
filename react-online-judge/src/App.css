@@ -44,10 +44,11 @@
 
 .example .Limit {
 	text-align: left;
-	height: 128px;
+	height: 200px;
 	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
 	padding: 1em;
+	margin-bottom: 10px;
 }
 
 .example .IO {
