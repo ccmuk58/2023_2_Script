@@ -1,32 +1,53 @@
+// Profile.js
+
 import { useParams } from "react-router-dom";
 import { db } from "./firebaseinit";
-import { collection, getDoc, doc, query, where } from 'firebase/firestore';
-import { useState } from "react";
-import { useEffect } from "react";
+import { collection, getDoc, doc, query, where, getDocs } from 'firebase/firestore';
+import { useState, useEffect } from "react";
 import { getClassColor, getClassName } from "../data/classColor";
+import { Link } from "react-router-dom";
+import { Table } from "react-bootstrap";
+
 const Profile = () => {
 	const { userId } = useParams();
 	const [user, setUser] = useState(null);
-	
+	const [solvedProblems, setSolvedProblems] = useState([]);
+
 	useEffect(() => {
 		const fetchData = async () => {
 			const docRef = doc(db, "Members", userId);
 			const docSnap = await getDoc(docRef);
 			setUser(docSnap.data());
 		};
+
 		fetchData(); // 컴포넌트가 마운트될 때 데이터를 가져오기 위해 함수 호출
 	}, []);
+
+	useEffect(() => {
+		if (user) {
+			const fetchProblems = async () => {
+				const q = query(collection(db, "Problems"), where("id", "in", user.solved));
+				const querySnapshot = await getDocs(q);
+				const problems = [];
+				querySnapshot.forEach((doc) => {
+					problems.push({ problemId: doc.id, ...doc.data() });
+				});
+				setSolvedProblems(problems);
+			};
+
+			fetchProblems();
+		}
+	}, [user]); // user 상태가 변경될 때마다 실행
 
 	if (!user) {
 		return <span>유저를 찾을 수 없습니다.</span>
 	}
 	const { nickname, ID, email, exp, solved } = user;
-	const solvedProblems = [];
 	const userClass = getClassName(exp);
 	const classColor = getClassColor(exp);
 	const userClassExp = exp % 100;
 	const solvedCount = solved.length;
-	
+
 	return (
 		<>
 			<div className="content-item">
@@ -41,8 +62,8 @@ const Profile = () => {
 				<h1 style={{ fontWeight: "bold" }}>{nickname}</h1>
 				<p>{email}</p>
 
-				<div className="content-item-div" style={{justifyContent:"space-between"}}>
-					<p style={{ width: "100%",fontWeight:"bold", color: classColor }}>{userClass}</p>
+				<div className="content-item-div" style={{ justifyContent: "space-between" }}>
+					<p style={{ width: "100%", fontWeight: "bold", color: classColor }}>{userClass}</p>
 					<div className="exp-bar">
 						<div className="exp-bar-inner" style={{
 							width: `${userClassExp}%`,
@@ -50,14 +71,36 @@ const Profile = () => {
 						}}></div>
 
 					</div>
-						<p>{userClassExp}/100</p>
-						<p>총 {exp}EXP</p>
+					<p>{userClassExp}/100</p>
+					<p>총 {exp}EXP</p>
 				</div>
-				<div className="content-item-div">
+				<div className="content-solved">
 					<p>푼 문제 : 총 {solvedCount}개</p>
-					{solvedProblems.map((problemId) => (
-						<p style={{ display: "inline-block" }}>{problemId}&nbsp;</p>
-					))}
+					<Table striped bordered hover>
+						<thead>
+							<tr>
+								<th>No</th>
+								<th>제목</th>
+								<th>난이도</th>
+							</tr>
+						</thead>
+						<tbody>
+							{solvedProblems.map((problem) => (
+								<tr key={problem.problemId}>
+									<td>
+										<Link className="nav-link" to={`/problem/${problem.problemId}`}>{problem.id}</Link>
+									</td>
+									<td>
+										<Link className="nav-link" to={`/problem/${problem.problemId}`}>{problem.title}</Link>
+									</td>
+									<td>
+										<Link className="nav-link" to={`/problem/${problem.problemId}`}>{problem.difficulty}</Link>
+									</td>
+								</tr>
+							))}
+
+						</tbody>
+					</Table>
 				</div>
 				<div className="content-item-div">
 

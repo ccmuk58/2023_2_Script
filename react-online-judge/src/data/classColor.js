@@ -1,3 +1,4 @@
+// classColor.js
 const classes = ["Bronze", "Silver", "Gold", "Platinum", "Diamond", "Ruby"];
 const classColor = ["#cd7f32", "#6E6E6E", "#FFBF00", "#01DFA5", "#00BFFF", "#FF0040"];
 
