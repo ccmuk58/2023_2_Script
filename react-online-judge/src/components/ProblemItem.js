@@ -1,3 +1,4 @@
+// ProblemItem.js
 import { useParams } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import { db } from "./firebaseinit";
@@ -7,7 +8,7 @@ import JDoodleAPI from "../JDoodleAPI";
 import { useSelector } from "react-redux";
 import { selectLogin } from "./LoginReducer";
 import { useNavigate } from "react-router-dom";
-import { getDoc, doc, updateDoc } from "firebase/firestore";
+import { getDoc, doc, updateDoc, collection } from "firebase/firestore";
 
 const ProblemItem = () => {
     const navigate = useNavigate();
@@ -21,22 +22,17 @@ const ProblemItem = () => {
    const fetchData = async () => {
     const docRef = doc(db, "Problems", problemId);
     const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-        setProblem(docSnap.data());
-    }else{
-        console.log("No such document!");
-    }
+    setProblem(docSnap.data());
    };
    
 
     const {
         title, description, difficulty,
         timeLimit, memoryLimit, inputLimit, outputLimit,
-        exinput, exoutput, input, output, id, exp,
+        exinput, exoutput, input, output, id, exp, solvedCount
     } = problem; // 비구조화 할당
-
+      
+   
     const [code, setCode] = useState('');
     const [language, setLanguage] = useState('cpp17');
     const [loading, setLoading] = useState(false);
@@ -55,7 +51,6 @@ const ProblemItem = () => {
                 console.error("Error checking credit:", error);
             }
         };
-
         checkCredit();
         fetchData();
     }, []);
@@ -93,12 +88,18 @@ const ProblemItem = () => {
 
             // 사용자의 문서 참조
             const userDocRef = doc(db, "Members", userKey);
-            
             // 문서를 읽어와 현재 'solved' 배열을 가져온다.
             const userDocSnap = await getDoc(userDocRef); // 문서 스냅샷
             const userDocData = userDocSnap.data(); // 문서 데이터
             const solvedArray = userDocData.solved;
             const Userexp = userDocData.exp;
+
+            // 문제의 문서 참조
+            const ProblemDocRef = doc(db, "Problems", problemId);
+            const ProblemDocSnap = await getDoc(ProblemDocRef);
+            const ProblemDocData = ProblemDocSnap.data();
+            const solvedCount = ProblemDocData.solvedCount;
+
             // 현재 문제의 ID를 'solved' 배열에 추가
             if(!solvedArray.includes(id)){ // 문제를 푼 적이 없으면
                 solvedArray.push(id);
@@ -108,6 +109,11 @@ const ProblemItem = () => {
                 await updateDoc(userDocRef, {
                     solved: solvedArray,
                     exp: Userexp + exp,
+                });
+
+                // 'solvedCount' 필드를 업데이트
+                await updateDoc(ProblemDocRef, {
+                    solvedCount: solvedCount + 1,
                 });
             }
             else {
@@ -141,9 +147,9 @@ const ProblemItem = () => {
         <div className="content-item">
             <h2 className="problemHeader">{title}</h2>
             <hr />
-            난이도: {difficulty} | 시간 제한 : {timeLimit}초 | 메모리 제한 : {memoryLimit}MB | 푼 사람: 0명
+            난이도: {difficulty} | 시간 제한 : {timeLimit}초 | 메모리 제한 : {memoryLimit}MB | 푼 사람: {solvedCount}명
             <hr />
-            <p>{description}</p>
+            {description}
             <hr />
 
             <div className="content-item-div">
@@ -186,8 +192,7 @@ const ProblemItem = () => {
                         {loading ? '채점중..' : '제출'}
                     </Button>
                     <br />
-                    사용 크레딧(제출당 3) : {credit} / 
- 200
+                    사용 크레딧(제출당 3) : {credit} / 200
 				</div>
 
 				<div className="content-item-div">
