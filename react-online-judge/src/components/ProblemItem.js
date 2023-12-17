@@ -34,7 +34,7 @@ const ProblemItem = () => {
     const {
         title, description, difficulty,
         timeLimit, memoryLimit, inputLimit, outputLimit,
-        exinput, exoutput, input, output, id,
+        exinput, exoutput, input, output, id, exp,
     } = problem; // 비구조화 할당
 
     const [code, setCode] = useState('');
@@ -97,15 +97,24 @@ const ProblemItem = () => {
             // 문서를 읽어와 현재 'solved' 배열을 가져온다.
             const userDocSnap = await getDoc(userDocRef); // 문서 스냅샷
             const userDocData = userDocSnap.data(); // 문서 데이터
-            const solvedArray = userDocData.solved || []; // 'solved' 필드의 값이 없으면 빈 배열을 사용
-
+            const solvedArray = userDocData.solved;
+            const Userexp = userDocData.exp;
             // 현재 문제의 ID를 'solved' 배열에 추가
-            solvedArray.push(id);
+            if(!solvedArray.includes(id)){ // 문제를 푼 적이 없으면
+                solvedArray.push(id);
+                solvedArray.sort((a, b) => a - b); // 오름차순 정렬
 
-            // 'solved' 필드를 업데이트
-            await updateDoc(userDocRef, {
-                solved: solvedArray,
-            });
+                // 'solved' 필드를 업데이트
+                await updateDoc(userDocRef, {
+                    solved: solvedArray,
+                    exp: Userexp + exp,
+                });
+            }
+            else {
+                alert("이미 푼 문제입니다.");
+                navigate('/problem');
+            }
+           
 
         }).catch((error) => {
             console.error("Error checking result:", error);
