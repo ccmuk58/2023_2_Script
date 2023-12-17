@@ -59,7 +59,7 @@ const Profile = () => {
 					<p>총 경험치 : {exp}</p>
 					<p>남은 경험치 : {userClassExp}</p>
 					<div className="exp-bar">
-						<div className="exp-bar-inner" style={{ width: `${userClassExp}%` }}></div>
+						<div className="exp-bar-inner" style={{ width: `${100-userClassExp}%` }}></div>
 					</div>
 				</div>
 				<div className="content-item-div">

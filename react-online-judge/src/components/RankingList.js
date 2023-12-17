@@ -31,7 +31,7 @@ const RankingList = () => {
     else if (exp < 300) return "Gold";
     else if (exp < 400) return "Platinum";
     else if (exp < 500) return "Diamond";
-    else return "Master";
+    else return "Ruby";
   };
 
   return (
