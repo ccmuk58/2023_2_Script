@@ -30,7 +30,7 @@ const Profile = () => {
 	const classColor = ["#cd7f32", "#6E6E6E", "#FFBF00", "#01DFA5", "#00BFFF", "#FF0040"];
 	const solvedProblems = [];
 	const userClass = classes[Math.floor(exp / 100)];
-	const userClassExp = 100 - exp % 100;
+	const userClassExp = exp % 100;
 	function solvedCount(solved) {
 		let count = 0;
 		for (let i = 0; i < solved.length; i++) {
@@ -59,7 +59,7 @@ const Profile = () => {
 					<p style={{ width: "100%",fontWeight:"bold", color: classColor[classes.indexOf(userClass)] }}>{userClass}</p>
 					<div className="exp-bar">
 						<div className="exp-bar-inner" style={{
-							width: `${100 - userClassExp}%`,
+							width: `${userClassExp}%`,
 							backgroundColor: classColor[classes.indexOf(userClass)]
 						}}></div>
 
