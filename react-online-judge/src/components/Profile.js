@@ -24,7 +24,7 @@ const Profile = () => {
 	}, []);
 
 	useEffect(() => {
-		if (user) {
+		if (user && user.solved && user.solved.length > 0) {
 			const fetchProblems = async () => {
 				const q = query(collection(db, "Problems"), where("id", "in", user.solved));
 				const querySnapshot = await getDocs(q);
