@@ -10,13 +10,7 @@ const Profile = () => {
 	const fetchData = async () => {
 		const docRef = doc(db, "Members", userId);
 		const docSnap = await getDoc(docRef);
-
-		if (docSnap.exists()) {
-			console.log("Document data:", docSnap.data());
-			setUser(docSnap.data());
-		} else {
-			console.log("No such document!");
-		}
+		setUser(docSnap.data());
 	};
 	useEffect(() => {
 		fetchData(); // 컴포넌트가 마운트될 때 데이터를 가져오기 위해 함수 호출
@@ -30,16 +24,8 @@ const Profile = () => {
 	const userClass = getClassColor(exp);
 	const classColor = getClassColor(exp);
 	const userClassExp = exp % 100;
-	function solvedCount(solved) {
-		let count = 0;
-		for (let i = 0; i < solved.length; i++) {
-			if (solved[i] === true) {
-				solvedProblems.push(i + 1);
-				count++;
-			}
-		}
-		return count;
-	}
+	const solvedCount = solved.length;
+	
 	return (
 		<>
 			<div className="content-item">
@@ -67,7 +53,7 @@ const Profile = () => {
 						<p>총 {exp}EXP</p>
 				</div>
 				<div className="content-item-div">
-					<p>푼 문제 : 총 {solvedCount(solved)}개</p>
+					<p>푼 문제 : 총 {solvedCount}개</p>
 					{solvedProblems.map((problemId) => (
 						<p style={{ display: "inline-block" }}>{problemId}&nbsp;</p>
 					))}
