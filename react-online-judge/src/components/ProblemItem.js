@@ -10,6 +10,7 @@ import { selectLogin } from "./LoginReducer";
 import { useNavigate } from "react-router-dom";
 import { getDoc, doc, updateDoc, collection } from "firebase/firestore";
 import { getProblemClassColor } from "../data/classColor";
+import Editor from "@monaco-editor/react";
 
 const ProblemItem = () => {
 	const navigate = useNavigate();
@@ -32,7 +33,7 @@ const ProblemItem = () => {
 		timeLimit, memoryLimit, inputLimit, outputLimit,
 		exinput, exoutput, input, output, id, exp, solvedCount, algorithms
 	} = problem; // 비구조화 할당
-	
+
 	const [code, setCode] = useState('');
 	const [language, setLanguage] = useState('cpp17');
 	const [loading, setLoading] = useState(false);
@@ -40,6 +41,7 @@ const ProblemItem = () => {
 	const [memory, setMemory] = useState('');
 	const [result, setResult] = useState('');
 	const [credit, setCredit] = useState('');
+	const [editorLanguage, setEditorLanguage] = useState('cpp');
 
 	useEffect(() => {
 		const checkCredit = async () => {
@@ -126,8 +128,8 @@ const ProblemItem = () => {
 		});
 	};
 
-	const handleCodeChange = (e) => {
-		setCode(e.target.value);
+	const handleCodeChange = (value, e) => {
+		setCode(value);
 	};
 
 	const handleSubmit = (e) => {
@@ -141,7 +143,7 @@ const ProblemItem = () => {
 			navigate('/login');
 		}
 	};
-	
+
 	return (
 		<div className="content-item">
 			<h2 className="problemHeader">{title}</h2>
@@ -149,19 +151,19 @@ const ProblemItem = () => {
 			난이도: <p style={{ display: "inline", color: getProblemClassColor(difficulty), fontWeight: "bold" }}>{difficulty} </p>
 			| 시간 제한 : {timeLimit}초 | 메모리 제한 : {memoryLimit}MB | 푼 사람: {solvedCount}명
 			<hr />
-			<div dangerouslySetInnerHTML={{__html:  description}}></div>
+			<div dangerouslySetInnerHTML={{ __html: description }}></div>
 			<hr />
 
 			<div className="content-item-div">
 				<div className="example" >
 					<h5>입력</h5>
-					<div className="Limit" dangerouslySetInnerHTML={{__html:  inputLimit}}></div>
-					<div className="IO" dangerouslySetInnerHTML={{__html:  exinput}}></div>
+					<div className="Limit" dangerouslySetInnerHTML={{ __html: inputLimit }}></div>
+					<div className="IO" dangerouslySetInnerHTML={{ __html: exinput }}></div>
 				</div>
 				<div className="example">
 					<h5>출력</h5>
-					<div className="Limit" dangerouslySetInnerHTML={{__html:  outputLimit}}></div>
-					<div className="IO" dangerouslySetInnerHTML={{__html:  exoutput}}></div>
+					<div className="Limit" dangerouslySetInnerHTML={{ __html: outputLimit }}></div>
+					<div className="IO" dangerouslySetInnerHTML={{ __html: exoutput }}></div>
 				</div>
 			</div>
 			<h5>알고리즘 분류</h5>
@@ -170,26 +172,42 @@ const ProblemItem = () => {
 					<p style={{ display: "inline-block" }}>{algorithm}&nbsp;</p>
 				))}
 			</div>
-	
+
 			<Form onSubmit={handleSubmit}>
 				<Form.Group controlId="language">
 					<Form.Label>언어</Form.Label>
-					<Form.Control as="select" value={language} onChange={(e) => setLanguage(e.target.value)}>
+					<Form.Control as="select" value={language}
+						onChange={(e) => {
+							setLanguage(e.target.value);
+							if(e.target.value === "cpp17") setEditorLanguage("cpp");
+							else if(e.target.value === "python3")setEditorLanguage("python");
+							else setEditorLanguage(e.target.value);
+						}}>
 						<option value="cpp17">C++17</option>
 						<option value="c">C</option>
 						<option value="python3">Python3</option>
 						<option value="java">Java</option>
 						<option value="php">PHP</option>
 						<option value="csharp">C#</option>
-						<option value="objc">Objective-C</option>
-						<option value="rust">Rust</option>
-						<option value="go">Go</option>
-						<option value="nodejs">NodeJS</option>
 					</Form.Control>
 				</Form.Group>
 				<Form.Group controlId="code">
 					<Form.Label className="mt-3">소스 코드</Form.Label>
-					<Form.Control as="textarea" rows={10} value={code} onChange={handleCodeChange} />
+					{/* DOCS https://www.npmjs.com/package/@monaco-editor/react */}
+					<Editor
+						height="400px"
+						language={editorLanguage}
+						theme="vs-dark"
+						value={code}
+						onChange={handleCodeChange}
+						options={{
+							inlineSuggest: true,
+							fontSize: "16px",
+							formatOnType: true,
+							autoClosingBrackets: true,
+							minimap: { scale: 10 }
+						}}
+					/>
 				</Form.Group>
 				<div style={{ textAlign: "right" }}>
 					<Button variant="primary" type="submit" disabled={loading} className="mt-1">
