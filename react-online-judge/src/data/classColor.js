@@ -8,3 +8,10 @@ export const getClassName = (exp) => {
 export const getClassColor = (exp) => {
 	return classColor[classes.indexOf(getClassName(exp))];
 }
+export const getProblemClassColor = (difficulty) => {
+	for (let i = 0; i < classes.length; i++) {
+		if (difficulty === classes[i]) {
+			return classColor[i];
+		}
+	}
+}

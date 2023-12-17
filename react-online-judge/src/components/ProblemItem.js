@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { selectLogin } from "./LoginReducer";
 import { useNavigate } from "react-router-dom";
 import { getDoc, doc, updateDoc, collection } from "firebase/firestore";
+import { getProblemClassColor } from "../data/classColor";
 
 const ProblemItem = () => {
     const navigate = useNavigate();
@@ -147,7 +148,8 @@ const ProblemItem = () => {
         <div className="content-item">
             <h2 className="problemHeader">{title}</h2>
             <hr />
-            난이도: {difficulty} | 시간 제한 : {timeLimit}초 | 메모리 제한 : {memoryLimit}MB | 푼 사람: {solvedCount}명
+            난이도: <p style={{display:"inline", color:getProblemClassColor(difficulty), fontWeight:"bold"}}>{difficulty}</p>
+			 | 시간 제한 : {timeLimit}초 | 메모리 제한 : {memoryLimit}MB | 푼 사람: {solvedCount}명
             <hr />
             {description}
             <hr />

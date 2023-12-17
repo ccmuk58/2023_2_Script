@@ -5,6 +5,7 @@ import { collection, query, orderBy, getDocs, doc, getDoc } from "firebase/fires
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectLogin } from "./LoginReducer";
+import { getProblemClassColor } from "../data/classColor";
 
 const ProblemList = () => {
   const [sortedProblems, setSortedProblems] = useState([]);
@@ -65,7 +66,7 @@ const ProblemList = () => {
               </td>
               <td>
                 <Link className="nav-link" to={`/problem/${problemId}`}>
-                  {difficulty}
+				<p style={{color: getProblemClassColor(difficulty), fontWeight:"bold", display:"inline" }}>{difficulty}</p>
                 </Link>
               </td>
               <td>
