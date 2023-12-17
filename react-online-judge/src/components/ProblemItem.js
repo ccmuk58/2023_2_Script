@@ -7,7 +7,7 @@ import JDoodleAPI from "../JDoodleAPI";
 import { useSelector } from "react-redux";
 import { selectLogin } from "./LoginReducer";
 import { useNavigate } from "react-router-dom";
-import { getDoc, doc } from "firebase/firestore";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
 
 const ProblemItem = () => {
     const navigate = useNavigate();
@@ -34,8 +34,8 @@ const ProblemItem = () => {
     const {
         title, description, difficulty,
         timeLimit, memoryLimit, inputLimit, outputLimit,
-        exinput, exoutput, input, output,
-    } = problem;
+        exinput, exoutput, input, output, id,
+    } = problem; // 비구조화 할당
 
     const [code, setCode] = useState('');
     const [language, setLanguage] = useState('cpp17');
@@ -65,7 +65,7 @@ const ProblemItem = () => {
             JDoodleAPI.executeCode(code, language, input[0]),
             JDoodleAPI.executeCode(code, language, input[1]),
             JDoodleAPI.executeCode(code, language, input[2]),
-        ]).then((values) => {
+        ]).then(async (values) => {
             console.log(values[0]);
             console.log(values[1]);
             console.log(values[2]);
@@ -90,6 +90,23 @@ const ProblemItem = () => {
             setCpuTime(maxTime + "초");
             setMemory(maxMemory + "MB");
             setResult("맞았습니다!");
+
+            // 사용자의 문서 참조
+            const userDocRef = doc(db, "Members", userKey);
+            
+            // 문서를 읽어와 현재 'solved' 배열을 가져온다.
+            const userDocSnap = await getDoc(userDocRef); // 문서 스냅샷
+            const userDocData = userDocSnap.data(); // 문서 데이터
+            const solvedArray = userDocData.solved || []; // 'solved' 필드의 값이 없으면 빈 배열을 사용
+
+            // 현재 문제의 ID를 'solved' 배열에 추가
+            solvedArray.push(id);
+
+            // 'solved' 필드를 업데이트
+            await updateDoc(userDocRef, {
+                solved: solvedArray,
+            });
+
         }).catch((error) => {
             console.error("Error checking result:", error);
         });
