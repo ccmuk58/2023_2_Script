@@ -25,13 +25,11 @@ const RankingList = () => {
     return () => unsubscribe();
   }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행되도록 함 
 
+  const classes = ["Bronze", "Silver", "Gold", "Platinum", "Diamond", "Ruby"];
+  const classColor = ["#cd7f32", "#6E6E6E", "#FFBF00", "#01DFA5", "#00BFFF", "#FF0040"];
+
   const getClass = (exp) => {
-    if (exp < 100) return "Bronze";
-    else if (exp < 200) return "Silver";
-    else if (exp < 300) return "Gold";
-    else if (exp < 400) return "Platinum";
-    else if (exp < 500) return "Diamond";
-    else return "Ruby";
+	return classes[Math.floor(exp / 100)];
   };
 
   return (
@@ -66,7 +64,7 @@ const RankingList = () => {
               </td>
               <td>
                 <Link className="nav-link" to={`/profile/${userKey}`}>
-                  {getClass(exp)}
+                  <p style={{color: classColor[classes.indexOf(getClass(exp))], fontWeight:"bold", display:"inline" }}>{getClass(exp)}</p>
                 </Link>
               </td>
             </tr>
