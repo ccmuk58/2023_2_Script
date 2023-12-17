@@ -7,12 +7,13 @@ import { getClassColor, getClassName } from "../data/classColor";
 const Profile = () => {
 	const { userId } = useParams();
 	const [user, setUser] = useState(null);
-	const fetchData = async () => {
-		const docRef = doc(db, "Members", userId);
-		const docSnap = await getDoc(docRef);
-		setUser(docSnap.data());
-	};
+	
 	useEffect(() => {
+		const fetchData = async () => {
+			const docRef = doc(db, "Members", userId);
+			const docSnap = await getDoc(docRef);
+			setUser(docSnap.data());
+		};
 		fetchData(); // 컴포넌트가 마운트될 때 데이터를 가져오기 위해 함수 호출
 	}, []);
 
