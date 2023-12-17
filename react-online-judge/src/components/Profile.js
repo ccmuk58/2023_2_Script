@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { db } from "./firebaseinit";
 import { collection, getDoc, doc, query, where, getDocs } from 'firebase/firestore';
 import { useState, useEffect } from "react";
-import { getClassColor, getClassName } from "../data/classColor";
+import { getClassColor, getClassName, getProblemClassColor } from "../data/classColor";
 import { Link } from "react-router-dom";
 import { Table } from "react-bootstrap";
 
@@ -94,7 +94,7 @@ const Profile = () => {
 										<Link className="nav-link" to={`/problem/${problem.problemId}`}>{problem.title}</Link>
 									</td>
 									<td>
-										<Link className="nav-link" to={`/problem/${problem.problemId}`}>{problem.difficulty}</Link>
+										<Link className="nav-link" to={`/problem/${problem.problemId}`} style={{fontWeight:"bold" ,color:getProblemClassColor(problem.difficulty)}}>{problem.difficulty}</Link>
 									</td>
 								</tr>
 							))}
