@@ -30,9 +30,9 @@ const ProblemItem = () => {
 	const {
 		title, description, difficulty,
 		timeLimit, memoryLimit, inputLimit, outputLimit,
-		exinput, exoutput, input, output, id, exp, solvedCount
+		exinput, exoutput, input, output, id, exp, solvedCount, algorithms
 	} = problem; // 비구조화 할당
-
+	
 	const [code, setCode] = useState('');
 	const [language, setLanguage] = useState('cpp17');
 	const [loading, setLoading] = useState(false);
@@ -142,7 +142,7 @@ const ProblemItem = () => {
 			navigate('/login');
 		}
 	};
-
+	
 	return (
 		<div className="content-item">
 			<h2 className="problemHeader">{title}</h2>
@@ -150,21 +150,23 @@ const ProblemItem = () => {
 			난이도: <p style={{ display: "inline", color: getProblemClassColor(difficulty), fontWeight: "bold" }}>{difficulty} </p>
 			| 시간 제한 : {timeLimit}초 | 메모리 제한 : {memoryLimit}MB | 푼 사람: {solvedCount}명
 			<hr />
-			{description}
+			<div dangerouslySetInnerHTML={{__html:  description}}></div>
 			<hr />
 
 			<div className="content-item-div">
 				<div className="example" >
 					<h5>입력</h5>
-					<p className="Limit">{inputLimit}</p>
-					<p className="IO">{exinput}</p>
+					<div className="Limit" dangerouslySetInnerHTML={{__html:  inputLimit}}></div>
+					<div className="IO" dangerouslySetInnerHTML={{__html:  exinput}}></div>
 				</div>
 				<div className="example">
 					<h5>출력</h5>
-					<p className="Limit">{outputLimit}</p>
-					<p className="IO">{exoutput}</p>
+					<div className="Limit" dangerouslySetInnerHTML={{__html:  outputLimit}}></div>
+					<div className="IO" dangerouslySetInnerHTML={{__html:  exoutput}}></div>
 				</div>
+				
 			</div>
+	
 			<Form onSubmit={handleSubmit}>
 				<Form.Group controlId="language">
 					<Form.Label>언어</Form.Label>
