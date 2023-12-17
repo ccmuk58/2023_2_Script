@@ -3,7 +3,7 @@ import { db } from "./firebaseinit";
 import { collection, getDoc, doc, query, where } from 'firebase/firestore';
 import { useState } from "react";
 import { useEffect } from "react";
-
+import { getClassColor, getClassName } from "../data/classColor";
 const Profile = () => {
 	const { userId } = useParams();
 	const [user, setUser] = useState(null);
@@ -25,11 +25,10 @@ const Profile = () => {
 	if (!user) {
 		return <span>유저를 찾을 수 없습니다.</span>
 	}
-	const { nickname, ID, PW, email, exp, solved } = user;
-	const classes = ["Bronze", "Silver", "Gold", "Platinum", "Diamond", "Ruby"];
-	const classColor = ["#cd7f32", "#6E6E6E", "#FFBF00", "#01DFA5", "#00BFFF", "#FF0040"];
+	const { nickname, ID, email, exp, solved } = user;
 	const solvedProblems = [];
-	const userClass = classes[Math.floor(exp / 100)];
+	const userClass = getClassColor(exp);
+	const classColor = getClassColor(exp);
 	const userClassExp = exp % 100;
 	function solvedCount(solved) {
 		let count = 0;
@@ -56,11 +55,11 @@ const Profile = () => {
 				<p>{email}</p>
 
 				<div className="content-item-div" style={{justifyContent:"space-between"}}>
-					<p style={{ width: "100%",fontWeight:"bold", color: classColor[classes.indexOf(userClass)] }}>{userClass}</p>
+					<p style={{ width: "100%",fontWeight:"bold", color: classColor }}>{userClass}</p>
 					<div className="exp-bar">
 						<div className="exp-bar-inner" style={{
 							width: `${userClassExp}%`,
-							backgroundColor: classColor[classes.indexOf(userClass)]
+							backgroundColor: classColor
 						}}></div>
 
 					</div>
