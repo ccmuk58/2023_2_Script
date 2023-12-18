@@ -66,7 +66,11 @@ const ProblemItem = () => {
 			console.log(values[1]);
 			console.log(values[2]);
 			for (let i = 0; i < 3; i++) {
-				if (values[i].output != output[i]) {
+				const generalOutput = values[i].output.replace(/\s+$/g, '');
+				const generalExoutput = output[i].replace(/\s+$/g, '');
+				console.log(generalOutput);
+				console.log(generalExoutput);
+				if (generalOutput !== generalExoutput) {
 					setResult("틀렸습니다.");
 					return;
 				}
@@ -74,12 +78,12 @@ const ProblemItem = () => {
 			const maxTime = Math.max(values[0].cpuTime, values[1].cpuTime, values[2].cpuTime);
 			const maxMemory = Number(Math.max(values[0].memory, values[1].memory, values[2].memory)) / 1000;
 			if (maxTime > timeLimit) {
-				console.log("최대 시간 : " + maxTime + "초, " + "제한 시간 : " + timeLimit + "초");
+				console.log("최대 시간 : " + maxTime + "초, 제한 시간 : " + timeLimit + "초");
 				setResult("시간 초과");
 				return;
 			}
 			if (maxMemory > memoryLimit) {
-				console.log("최대 메모리 : " + maxMemory + "MB, " + "제한 메모리 : " + memoryLimit + "MB");
+				console.log("최대 메모리 : " + maxMemory + "MB, 제한 메모리 : " + memoryLimit + "MB");
 				setResult("메모리 초과");
 				return;
 			}
