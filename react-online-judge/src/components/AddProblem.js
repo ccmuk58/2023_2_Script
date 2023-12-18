@@ -1,7 +1,7 @@
 import {collection, addDoc, getDocs, query, where } from 'firebase/firestore';
 import { Link, useNavigate } from "react-router-dom";
 import {db} from "./firebaseinit";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 
 const AddProblem = () => {
@@ -12,7 +12,9 @@ const AddProblem = () => {
         const problemsSnapshot = await getDocs(problemsRef);
         return problemsSnapshot.size;
     }
-    setCredit({...credit, ID : index()});
+	useEffect(() => {
+		setCredit({...credit, ID : index()});
+	});
 
 	const handleProduce = async () => {
 		// Firestore에서 'id' 필드 값이 credit.userID와 일치하는 사용자 찾기

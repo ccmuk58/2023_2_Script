@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ErrorPage from "./components/ErrorPage";
 import ProblemItem from "./components/ProblemItem";
 import RankingList from "./components/RankingList";
-
+import AddProblem from "./components/AddProblem";
 const AppRouter = () => {
 	return (
 		<div>
@@ -25,6 +25,9 @@ const AppRouter = () => {
 						<Route path=':problemId' element={<ProblemItem />} />
 					</Route>
 					<Route path='ranking' element={<RankingList />} />
+					
+					{/*문제 생성 폼*/}
+					<Route path='/add' element={<AddProblem />} />
 					{/*로그인된 아이디로 프로필 접근 처리*/}
 					<Route path="/profile/:userId" element={<Profile />} />
 					<Route path="/login" element={<Login />} />
