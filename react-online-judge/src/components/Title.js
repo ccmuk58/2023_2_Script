@@ -45,7 +45,7 @@ function Title() {
 				<div>
 					<h3>사용자 수</h3>
 					<br />
-					<h5>asd</h5>
+					<h5>{membersCount} 명</h5>
 				</div>
 			</div>
 			<div className="content-item-div p-5">
