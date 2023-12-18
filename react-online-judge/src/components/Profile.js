@@ -42,22 +42,22 @@ const Profile = () => {
 	if (!user) {
 		return <span>유저를 찾을 수 없습니다.</span>
 	}
+	const addDefaultImg = (e) => {
+		e.target.src = '/img/default.png';
+	};
 	const { nickname, ID, email, exp, solved } = user;
 	const userClass = getClassName(exp);
 	const classColor = getClassColor(exp);
 	const userClassExp = exp % 100;
 	const solvedCount = solved.length;
-
 	return (
 		<>
 			<div className="content-item">
 				<h1 className="header">프로필</h1>
 				<img className="profileImg" style={{
 					height: "300px", borderRadius: "50%",
-					border: "2px solid #111", marginBottom: "10px"
-				}
-				}
-					src={`/img/${ID}.png`} alt="profileImage" />
+					border: "2px solid #111", marginBottom: "10px"}}
+				src={  `/img/${ID}.png`} onError={addDefaultImg}alt="profileImage" />
 				<br />
 				<h1 style={{ fontWeight: "bold" }}>{nickname}</h1>
 				<p>{email}</p>
