@@ -42,7 +42,7 @@ const Register = () => {
 			<FloatingLabel controlId="floatingInput" label="닉네임">
 				<Form.Control type="text" placeholder="nickname" onChange={(e) => setCredit({...credit, nickname: e.target.value})}/>
 			</FloatingLabel>
-			<p>아이디가 <a href='https://solved.ac' target='_blnak'>solved.ac</a> 사이트에 존재하는 경우 프로필에 연동됩니다.</p>
+			<p>아이디가 <a href='https://solved.ac' target='_blnak'>solved.ac</a>에 존재하는 경우 프로필에 연동됩니다.</p>
 			<Button variant="secondary" onClick={handleRegister}>회원가입</Button>
 		</>
 	);
