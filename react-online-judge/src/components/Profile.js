@@ -2,7 +2,7 @@
 
 import { useParams } from "react-router-dom";
 import { db } from "./firebaseinit";
-import { collection, getDoc, doc, query, where, getDocs } from 'firebase/firestore';
+import { collection, getDoc, doc, query, where, getDocs, orderBy } from 'firebase/firestore';
 import { useState, useEffect } from "react";
 import { getClassColor, getClassName, getProblemClassColor } from "../data/classColor";
 import { Link } from "react-router-dom";
@@ -26,7 +26,7 @@ const Profile = () => {
 	useEffect(() => {
 		if (user && user.solved && user.solved.length > 0) {
 			const fetchProblems = async () => {
-				const q = query(collection(db, "Problems"), where("id", "in", user.solved));
+				const q = query(collection(db, "Problems"), where("id", "in", user.solved), orderBy("id"));
 				const querySnapshot = await getDocs(q);
 				const problems = [];
 				querySnapshot.forEach((doc) => {
