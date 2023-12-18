@@ -1,5 +1,5 @@
 import {collection, addDoc, getDocs, query, where } from 'firebase/firestore';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {db} from "./firebaseinit";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -42,6 +42,7 @@ const Register = () => {
 			<FloatingLabel controlId="floatingInput" label="닉네임">
 				<Form.Control type="text" placeholder="nickname" onChange={(e) => setCredit({...credit, nickname: e.target.value})}/>
 			</FloatingLabel>
+			<p>아이디가 solved.ac 사이트에 존재하는 경우 프로필에 연동됩니다.</p>
 			<Button variant="secondary" onClick={handleRegister}>회원가입</Button>
 		</>
 	);
