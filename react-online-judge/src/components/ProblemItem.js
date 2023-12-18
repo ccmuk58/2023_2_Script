@@ -70,6 +70,7 @@ const ProblemItem = () => {
 				const generalExoutput = output[i].replace(/\s+$/g, '');
 				console.log(generalOutput);
 				console.log(generalExoutput);
+				setLoading(false);
 				if (generalOutput !== generalExoutput) {
 					setResult("틀렸습니다.");
 					return;
@@ -141,7 +142,6 @@ const ProblemItem = () => {
 			e.preventDefault();
 			setLoading(true);
 			checkResult();
-			setLoading(false);
 		} else {
 			alert("로그인이 필요합니다.");
 			navigate('/login');
@@ -183,8 +183,8 @@ const ProblemItem = () => {
 					<Form.Control as="select" value={language}
 						onChange={(e) => {
 							setLanguage(e.target.value);
-							if(e.target.value === "cpp17") setEditorLanguage("cpp");
-							else if(e.target.value === "python3")setEditorLanguage("python");
+							if (e.target.value === "cpp17") setEditorLanguage("cpp");
+							else if (e.target.value === "python3") setEditorLanguage("python");
 							else setEditorLanguage(e.target.value);
 						}}>
 						<option value="cpp17">C++17</option>
