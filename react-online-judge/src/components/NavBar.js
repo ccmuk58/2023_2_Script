@@ -18,7 +18,6 @@ const NavBar = () => {
 						<Nav className="me-auto">
 							<NavLink to='/problem' className="nav-link">문제</NavLink>
 							<NavLink to='/ranking' className="nav-link">랭킹</NavLink>
-							<NavLink to='/add' className="nav-link">문제추가</NavLink>
 							{!isLogin && <NavLink to='/login' className="nav-link">로그인</NavLink>}
 							{!isLogin && <NavLink to='/register' className="nav-link">회원가입</NavLink>}							
 							{isLogin && <NavLink to={`/profile/${userKey}`} className="nav-link">프로필</NavLink>}
